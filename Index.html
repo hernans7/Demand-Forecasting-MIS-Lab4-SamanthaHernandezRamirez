@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uber AI Forecasting Lab | MIS 432</title>
+<style>
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#000;
+color:#fff;
+line-height:1.6;
+}
+nav{
+background:#111;
+padding:18px;
+font-weight:bold;
+color:#1fbad6;
+text-align:center;
+border-bottom:2px solid #1fbad6;
+}
+.container{
+max-width:1100px;
+margin:auto;
+padding:30px;
+}
+section{
+margin-bottom:40px;
+padding:25px;
+background:#111;
+border-left:5px solid #1fbad6;
+border-radius:10px;
+}
+h1,h2{
+color:#1fbad6;
+margin-top:0;
+}
+.chart{
+background:#1a1a1a;
+padding:20px;
+border-radius:10px;
+margin-top:15px;
+}
+.placeholder{
+padding:15px;
+background:#222;
+border:1px dashed #1fbad6;
+margin-top:10px;
+border-radius:8px;
+color:#ccc;
+}
+footer{
+text-align:center;
+padding:30px;
+color:#999;
+}
+</style>
+</head>
+<body>
+
+<nav>MIS 432 · AI in Business · Western Washington University</nav>
+
+<div class="container">
+
+<section>
+<h1>The Business Problem</h1>
+<p>
+Demand forecasting is the engine behind Uber’s business model. If Uber predicts rider demand too low, customers face long waits and unavailable cars. If it predicts too high, drivers waste time sitting idle and Uber loses efficiency. Accurate forecasting determines driver placement, surge pricing, and customer satisfaction in real time.
+</p>
+</section>
+
+<section>
+<h2>The Data and the Model</h2>
+<p>
+I simulated two years of Friday night Uber trip demand near Western Washington University in Bellingham. The dataset included growth trends, seasonal changes, New Year’s Eve spikes, and the school-year effect created by student presence on campus. I then trained a linear regression model using those features and backtested it on unseen weeks to measure how reliable the predictions were before using it in a real decision.
+</p>
+
+<div class="chart">
+<p><strong>Backtest Chart Description:</strong></p>
+<div class="placeholder">
+The dashed orange prediction line followed the actual cyan demand line closely during normal weeks, especially during school-year periods. It diverged most during sudden spikes like holidays and event nights where demand jumped faster than historical patterns suggested.
+</div>
+</div>
+
+<p><strong>The dashed line is what the model predicted. The solid line is what actually happened. The gap between them is the model's error — and the honest measure of how much to trust it.</strong></p>
+</section>
+
+<section>
+<h2>The Concert Night Prediction</h2>
+<p>
+Here is the actual operations recommendation the model produced for the Death Cab for Cutie, Sleater-Kinney, and ODESZA homecoming concert at WWU.
+</p>
+
+<div class="placeholder">
+Predicted Friday night trips: 850 (range: 723 to 978)
+
+Recommended drivers needed: 241 to 326
+
+Surge Pricing: YES
+
+Reason: Forecasted demand exceeds normal driver supply and concert traffic may create concentrated ride requests from 10pm–11pm.
+</div>
+</section>
+
+<section>
+<h2>Stress-Testing the Forecast</h2>
+<p>
+Before sending that memo, I stress-tested the key assumptions to understand how fragile the recommendation was.
+</p>
+
+<div class="placeholder">
+When available drivers fell below 20 or trips per driver dropped under 2.5 due to traffic, surge pricing became necessary immediately.
+
+Conclusion: Driver availability had a larger impact than demand swings alone. Even if demand stayed near forecast, low supply created the biggest operational risk.
+</div>
+
+<p>
+Stress-testing means deliberately changing assumptions before committing to a recommendation. Real analysts use it to identify where a forecast is robust and where it can fail under pressure.
+</p>
+</section>
+
+<section>
+<h2>When the Algorithm Decides</h2>
+<p>
+Once the forecast is generated, Uber’s pricing engine can instantly convert that number into surge pricing with no human review. When the model is accurate, this efficiently balances rider demand and driver supply. When the model is wrong—such as during emergencies or unpredictable events—it can produce harmful or unfair pricing decisions at scale.
+</p>
+</section>
+
+<section>
+<h2>When the Model Breaks</h2>
+<p>
+Six weeks after the concert, the market changed. WWU enrollment dropped, new apartments shifted demand north toward Cordata, and Lyft entered the area competing for drivers. The model still relied on old patterns, so it overpredicted some areas and underpredicted others. Drivers earned less, riders waited longer, and no one using the app could see why.
+</p>
+</section>
+
+<section>
+<h2>My Analysis</h2>
+<div class="placeholder">
+This lab showed how every stage of AI connects. Decisions made during data collection determine what the model learns, which affects forecasts, surge pricing, driver placement, and rider wait times later. If the original data misses important changes, the entire system keeps making bad decisions automatically. If I built this for a real Bellingham business, I would add live event and weather data because sudden changes matter more than historical averages alone.
+</div>
+</section>
+
+</div>
+
+<footer>
+Uber AI Forecasting Lab Portfolio Project
+</footer>
+
+</body>
+</html>
